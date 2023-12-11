@@ -14,10 +14,10 @@ import (
 	"testing"
 	"time"
 
+	tpb "github.com/davnerson-dn/forked-kne/proto/topo"
+	"github.com/davnerson-dn/forked-kne/topo/node"
 	"github.com/google/go-cmp/cmp"
 	"github.com/h-fam/errdiff"
-	tpb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
 	scrapliopts "github.com/scrapli/scrapligo/driver/options"
 	scraplilogging "github.com/scrapli/scrapligo/logging"
 	scraplitransport "github.com/scrapli/scrapligo/transport"
