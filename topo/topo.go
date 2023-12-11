@@ -48,6 +48,7 @@ import (
 
 	_ "github.com/davnerson-dn/forked-kne/topo/node/arista"
 	_ "github.com/davnerson-dn/forked-kne/topo/node/cisco"
+	_ "github.com/davnerson-dn/forked-kne/topo/node/drivenets"
 	_ "github.com/davnerson-dn/forked-kne/topo/node/gobgp"
 	_ "github.com/davnerson-dn/forked-kne/topo/node/host"
 	_ "github.com/davnerson-dn/forked-kne/topo/node/juniper"
