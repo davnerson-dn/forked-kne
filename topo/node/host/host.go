@@ -16,8 +16,8 @@ package host
 import (
 	"fmt"
 
-	tpb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
+	tpb "github.com/davnerson-dn/forked-kne/proto/topo"
+	"github.com/davnerson-dn/forked-kne/topo/node"
 )
 
 func New(nodeImpl *node.Impl) (node.Node, error) {

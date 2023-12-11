@@ -6,9 +6,9 @@ import (
 	"google.golang.org/protobuf/encoding/prototext"
 	"google.golang.org/protobuf/proto"
 
+	topopb "github.com/davnerson-dn/forked-kne/proto/topo"
+	"github.com/davnerson-dn/forked-kne/topo/node"
 	"github.com/h-fam/errdiff"
-	topopb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
 )
 
 func TestNew(t *testing.T) {

@@ -5,11 +5,11 @@ import (
 	"strings"
 	"testing"
 
+	cmddeploy "github.com/davnerson-dn/forked-kne/cmd/deploy"
+	"github.com/davnerson-dn/forked-kne/deploy"
+	"github.com/davnerson-dn/forked-kne/load"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	cmddeploy "github.com/openconfig/kne/cmd/deploy"
-	"github.com/openconfig/kne/deploy"
-	"github.com/openconfig/kne/load"
 )
 
 func TestNewConfig(t *testing.T) {

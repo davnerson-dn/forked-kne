@@ -22,10 +22,10 @@ import (
 	"fmt"
 	"io"
 
+	tpb "github.com/davnerson-dn/forked-kne/proto/topo"
+	"github.com/davnerson-dn/forked-kne/topo/node"
 	cdnosv1 "github.com/drivenets/cdnos-controller/api/v1"
 	"github.com/drivenets/cdnos-controller/api/v1/clientset"
-	tpb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

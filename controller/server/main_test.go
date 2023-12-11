@@ -4,11 +4,11 @@ import (
 	"os"
 	"testing"
 
+	"github.com/davnerson-dn/forked-kne/deploy"
+	cpb "github.com/davnerson-dn/forked-kne/proto/controller"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/h-fam/errdiff"
-	"github.com/openconfig/kne/deploy"
-	cpb "github.com/openconfig/kne/proto/controller"
 )
 
 func TestNewDeployment(t *testing.T) {

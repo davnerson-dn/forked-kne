@@ -24,9 +24,9 @@ import (
 	"strings"
 	"time"
 
-	cpb "github.com/openconfig/kne/proto/ceos"
-	tpb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
+	cpb "github.com/davnerson-dn/forked-kne/proto/ceos"
+	tpb "github.com/davnerson-dn/forked-kne/proto/topo"
+	"github.com/davnerson-dn/forked-kne/topo/node"
 	scraplinetwork "github.com/scrapli/scrapligo/driver/network"
 	scrapliopts "github.com/scrapli/scrapligo/driver/options"
 	scrapliutil "github.com/scrapli/scrapligo/util"

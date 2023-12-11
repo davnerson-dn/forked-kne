@@ -1,8 +1,8 @@
-// Package fake is used to fake calls github.com/openconfig/kne/exec.
+// Package fake is used to fake calls github.com/davnerson-dn/forked-kne/exec.
 //
 // Typical Usage:
 //
-//	import "github.com/openconfig/kne/exec"
+//	import "github.com/davnerson-dn/forked-kne/exec"
 //
 //	{
 //		responses := []fake.Response{...}
@@ -27,7 +27,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/openconfig/kne/exec"
+	"github.com/davnerson-dn/forked-kne/exec"
 )
 
 // A Response indicates how Command should respond to Run.
