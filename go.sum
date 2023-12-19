@@ -813,6 +813,8 @@ github.com/docker/go-units v0.5.0/go.mod h1:fgPhTUdO+D/Jk86RDLlptpiXQzgHJF7gydDD
 github.com/docopt/docopt-go v0.0.0-20180111231733-ee0de3bc6815/go.mod h1:WwZ+bS3ebgob9U8Nd0kOddGdZWjyMGR8Wziv+TBNwSE=
 github.com/drivenets/cdnos-controller v0.0.0-20231210094648-21a897af971f h1:4v9j0YFOZmPhrZqoPxMTFPtq7lj49hJePRv5jx0trR0=
 github.com/drivenets/cdnos-controller v0.0.0-20231210094648-21a897af971f/go.mod h1:F6Re3vjEW3espnk/CplugRSO7qxuYrkzpQm12PnHoxQ=
+github.com/drivenets/cdnos-controller v0.0.0-20231211104019-91d54b0d5a00 h1:g6VCHSBIFsEGdhBKaQ1y80dpI7R6xw5V9r9jB09ky+4=
+github.com/drivenets/cdnos-controller v0.0.0-20231211104019-91d54b0d5a00/go.mod h1:F6Re3vjEW3espnk/CplugRSO7qxuYrkzpQm12PnHoxQ=
 github.com/dustin/go-humanize v1.0.0/go.mod h1:HtrtbFcZ19U5GC7JDqmcUSB87Iq5E25KnS6fMYU6eOk=
 github.com/dustin/go-humanize v1.0.1/go.mod h1:Mu1zIs6XwVuF/gI1OepvI0qD18qycQx+mFykh5fBlto=
 github.com/emicklei/go-restful/v3 v3.11.0 h1:rAQeMHw1c7zTmncogyy8VvRZwtkmkZ4FxERmMY4rD+g=
@@ -1097,8 +1099,6 @@ github.com/onsi/ginkgo/v2 v2.11.0 h1:WgqUCUt/lT6yXoQ8Wef0fsNn5cAuMK7+KT9UFRz2tcU
 github.com/onsi/ginkgo/v2 v2.11.0/go.mod h1:ZhrRA5XmEE3x3rhlzamx/JJvujdZoJ2uvgI7kR0iZvM=
 github.com/onsi/gomega v1.27.10 h1:naR28SdDFlqrG6kScpT8VWpu1xWY5nJRCF3XaYyBjhI=
 github.com/onsi/gomega v1.27.10/go.mod h1:RsS8tutOdbdgzbPtzzATp12yT7kM5I5aElG3evPbQ0M=
-github.com/open-traffic-generator/ixia-c-operator v0.3.4 h1:xH0hLVWf2wuVUT9ovFdh/WwwBf1oGkBu5YEWD61igck=
-github.com/open-traffic-generator/ixia-c-operator v0.3.4/go.mod h1:Q+ZXCinXxUKcnrJf5PJC1Q7JxUQc5ZPZA85jwVAqIRQ=
 github.com/open-traffic-generator/ixia-c-operator v0.3.12 h1:9lMUNm+B8JL2elSfNXRmNMAbohMXOBJbQsa8itReO5o=
 github.com/open-traffic-generator/ixia-c-operator v0.3.12/go.mod h1:Q+ZXCinXxUKcnrJf5PJC1Q7JxUQc5ZPZA85jwVAqIRQ=
 github.com/open-traffic-generator/keng-operator v0.3.13 h1:XTYbqKafrSPF55YxfbTU4x6OEvsslvWKxxEocN959AM=
@@ -1127,8 +1127,6 @@ github.com/openconfig/gribi v1.0.0 h1:xMwEg0mBD+21mOxuFOw0d9dBKuIPwJEhMUUeUulZdL
 github.com/openconfig/gribi v1.0.0/go.mod h1:VFqGH2ZPFIfnKTimP4/AQB4OK0eySW5muJNFxXAwP6k=
 github.com/openconfig/grpctunnel v0.0.0-20220819142823-6f5422b8ca70 h1:t6SvvdfWCMlw0XPlsdxO8EgO+q/fXnTevDjdYREKFwU=
 github.com/openconfig/grpctunnel v0.0.0-20220819142823-6f5422b8ca70/go.mod h1:OmTWe7RyZj2CIzIgy4ovEBzCLBJzRvWSZmn7u02U9gU=
-github.com/openconfig/kne v0.1.14 h1:3xHy2bP+rr+2/2uFqliWXGjMPR7umO6mvFXh/TA2aJE=
-github.com/openconfig/kne v0.1.14/go.mod h1:gMhrUKk6aveDaLSo2yi/25tDm9pSlmgRkG8IP45CGqs=
 github.com/openconfig/kne v0.1.15 h1:3ADQpUasGv23V53KlkLdaJrMWM6yyJ4EGtJvFyVzCUA=
 github.com/openconfig/kne v0.1.15/go.mod h1:4rV0EbqxQec3BRvvkcrsponO6XLlMYFuNynkPAWjaMw=
 github.com/openconfig/lemming/operator v0.2.0 h1:dovZnR6lQkOHXcODli1NDOr/GVYrBY05KS5X11jxVbw=

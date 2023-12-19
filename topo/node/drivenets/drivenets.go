@@ -1,19 +1,21 @@
-// Copyright 2022 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//	http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/*
+Copyright 2023 nhadar-dn.
 
-// Package openconfig implmements node definitions for nodes from the
-// OpenConfig vendor. It implements both a device (model: lemming) and
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+// Package drivenets implmements node definitions for nodes from the
+// Drivenets vendor. It implements both a device (model: cdnos) and
 // an ATE (model: magna).
 package drivenets
 
@@ -21,6 +23,8 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"os"
+	"path/filepath"
 
 	tpb "github.com/davnerson-dn/forked-kne/proto/topo"
 	"github.com/davnerson-dn/forked-kne/topo/node"
@@ -28,6 +32,7 @@ import (
 	"github.com/drivenets/cdnos-controller/api/v1/clientset"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/rest"
 	log "k8s.io/klog/v2"
@@ -97,6 +102,13 @@ func (n *Node) Create(ctx context.Context) error {
 
 // cdnosCreate implements the Create function for the cdnos model devices.
 func (n *Node) cdnosCreate(ctx context.Context) error {
+	log.Infof("Creating Cdnos node resource %s", n.Name())
+
+	if _, err := n.CreateConfig(ctx); err != nil {
+		return fmt.Errorf("node %s failed to create config-map %w", n.Name(), err)
+	}
+	log.Infof("Created Cdnos %s configmap", n.Name())
+
 	nodeSpec := n.GetProto()
 	config := nodeSpec.GetConfig()
 	log.Infof("create cdnos %q", nodeSpec.Name)
@@ -223,7 +235,7 @@ func cdnosDefaults(pb *tpb.Node) *tpb.Node {
 		pb.Config = &tpb.Config{}
 	}
 	if pb.Config.Image == "" {
-		pb.Config.Image = "pr-registry.dev.drivenets.net/cdnos:noam2"
+		pb.Config.Image = "pr-registry.dev.drivenets.net/cdnos_pr_61485:19.1.0.1_priv.61485.1ca7037408b5f7a975949e0912d743498b1f49b5"
 	}
 	if pb.Config.InitImage == "" {
 		pb.Config.InitImage = node.DefaultInitContainerImage
@@ -260,7 +272,7 @@ func cdnosDefaults(pb *tpb.Node) *tpb.Node {
 		pb.Labels["vendor"] = tpb.Vendor_DRIVENETS.String()
 	}
 
-	// Always explicitly specify that lemming is a DUT, this cannot be overridden by the user.
+	// Always explicitly specify that cdnos is a DUT, this cannot be overridden by the user.
 	pb.Labels[node.OndatraRoleLabel] = node.OndatraRoleDUT
 
 	if pb.Services == nil {
@@ -344,4 +356,35 @@ func magnaDefaults(pb *tpb.Node) *tpb.Node {
 
 func init() {
 	node.Vendor(tpb.Vendor_DRIVENETS, New)
+}
+
+func (n *Node) CreateConfig(ctx context.Context) (*corev1.Volume, error) {
+	pb := n.Proto
+	var data []byte
+	switch v := pb.Config.GetConfigData().(type) {
+	case *tpb.Config_File:
+		var err error
+		data, err = os.ReadFile(filepath.Join(n.BasePath, v.File))
+		if err != nil {
+			return nil, err
+		}
+	case *tpb.Config_Data:
+		data = v.Data
+	}
+	if data != nil {
+		cm := &corev1.ConfigMap{
+			ObjectMeta: metav1.ObjectMeta{
+				Name: fmt.Sprintf("%s-config", pb.Name),
+			},
+			Data: map[string]string{
+				pb.Config.ConfigFile: string(data),
+			},
+		}
+		sCM, err := n.KubeClient.CoreV1().ConfigMaps(n.Namespace).Create(ctx, cm, metav1.CreateOptions{})
+		if err != nil {
+			return nil, err
+		}
+		log.V(1).Infof("Server Config Map:\n%v\n", sCM)
+	}
+	return nil, nil
 }

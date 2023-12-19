@@ -6,7 +6,7 @@ require (
 	cloud.google.com/go/pubsub v1.33.0
 	github.com/aristanetworks/arista-ceoslab-operator/v2 v2.0.2
 	github.com/docker/docker v24.0.7+incompatible
-	github.com/drivenets/cdnos-controller v0.0.0-20231210094648-21a897af971f
+	github.com/drivenets/cdnos-controller v0.0.0-20231211104019-91d54b0d5a00
 	github.com/ghodss/yaml v1.0.0
 	github.com/golang/glog v1.2.0
 	github.com/golang/mock v1.6.0
@@ -19,7 +19,6 @@ require (
 	github.com/openconfig/gnmi v0.10.0
 	github.com/openconfig/gnoigo v0.0.0-20231026010722-87413fdb22e7
 	github.com/openconfig/gribi v1.0.0
-	github.com/openconfig/kne v0.1.15
 	github.com/openconfig/lemming/operator v0.2.0
 	github.com/openconfig/ondatra v0.4.1
 	github.com/p4lang/p4runtime v1.3.0
@@ -104,6 +103,7 @@ require (
 	github.com/openconfig/gnsi v1.2.3 // indirect
 	github.com/openconfig/gocloser v0.0.0-20220310182203-c6c950ed3b0b // indirect
 	github.com/openconfig/goyang v1.4.3 // indirect
+	github.com/openconfig/kne v0.1.15 // indirect
 	github.com/openconfig/ygnmi v0.9.0 // indirect
 	github.com/openconfig/ygot v0.29.13 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
