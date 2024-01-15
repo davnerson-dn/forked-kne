@@ -48,6 +48,8 @@ var (
 	defaultSRLinuxOperator = ""
 	defaultCEOSLabOperator = ""
 	defaultLemmingOperator = ""
+	defaultCdnosOperator   = ""
+	default
 	// Flags.
 	port                 = flag.Int("port", 50051, "Controller server port")
 	reportUsage          = flag.Bool("report_usage", false, "Whether to reporting anonymous usage metrics")
@@ -66,6 +68,7 @@ func init() {
 		defaultSRLinuxOperator = filepath.Join(home, "kne", "manifests", "controllers", "srlinux", "manifest.yaml")
 		defaultCEOSLabOperator = filepath.Join(home, "kne", "manifests", "controllers", "ceoslab", "manifest.yaml")
 		defaultLemmingOperator = filepath.Join(home, "kne", "manifests", "controllers", "lemming", "manifest.yaml")
+		defaultCdnosOperator = filepath.Join(home, "kne", "manifests", "controllers", "cdnos", "manifest.yaml")
 	}
 }
 

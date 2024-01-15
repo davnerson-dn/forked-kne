@@ -218,6 +218,8 @@ func (d *Deployment) event() *epb.Cluster {
 			c.Controllers = append(c.Controllers, epb.Cluster_CONTROLLER_TYPE_SRLINUX)
 		case *LemmingSpec:
 			c.Controllers = append(c.Controllers, epb.Cluster_CONTROLLER_TYPE_LEMMING)
+		case *CdnosSpec:
+			c.Controllers = append(c.Controllers, epb.Cluster_CONTROLLER_TYPE_CDNOS)
 		}
 	}
 	return c
@@ -1294,6 +1296,55 @@ func (i *IxiaTGSpec) Deploy(ctx context.Context) error {
 
 func (i *IxiaTGSpec) Healthy(ctx context.Context) error {
 	return deploymentHealthy(ctx, i.kClient, "ixiatg-op-system")
+}
+
+func init() {
+	load.Register("Lemming", &load.Spec{
+		Type: LemmingSpec{},
+		Tag:  "controllers",
+	})
+}
+
+type CdnosSpec struct {
+	ManifestDir  string `yaml:"manifests"`
+	Operator     string `yaml:"operator" kne:"yaml"`
+	OperatorData []byte
+	kClient      kubernetes.Interface
+}
+
+func (c *CdnosSpec) SetKClient(k kubernetes.Interface) {
+	c.kClient = k
+}
+
+func (c *CdnosSpec) Deploy(ctx context.Context) error {
+	if c.OperatorData != nil {
+		f, err := os.CreateTemp("", "cdnos-operator-*.yaml")
+		if err != nil {
+			return err
+		}
+		defer os.Remove(f.Name())
+		if _, err := f.Write(c.OperatorData); err != nil {
+			return err
+		}
+		if err := f.Close(); err != nil {
+			return err
+		}
+		c.Operator = f.Name()
+	}
+	if c.Operator == "" && c.ManifestDir != "" {
+		log.Errorf("Deploying Cdnos controller using the directory 'manifests' field (%v) is deprecated, instead provide the filepath of the operator file directly using the 'operator' field going forward", c.ManifestDir)
+		c.Operator = filepath.Join(c.ManifestDir, "manifest.yaml")
+	}
+	log.Infof("Deploying Cdnos controller from: %s", c.Operator)
+	if err := logCommand("kubectl", "apply", "-f", c.Operator); err != nil {
+		return fmt.Errorf("failed to deploy cdnos operator: %w", err)
+	}
+	log.Infof("cdnos controller deployed")
+	return nil
+}
+
+func (c *CdnosSpec) Healthy(ctx context.Context) error {
+	return deploymentHealthy(ctx, c.kClient, "cdnos-controller-system")
 }
 
 func deploymentHealthy(ctx context.Context, c kubernetes.Interface, name string) error {
