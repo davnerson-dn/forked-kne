@@ -260,10 +260,10 @@ func cdnosDefaults(pb *tpb.Node) *tpb.Node {
 		pb.Constraints = map[string]string{}
 	}
 	if pb.Constraints["cpu"] == "" {
-		pb.Constraints["cpu"] = "4"
+		pb.Constraints["cpu"] = "3"
 	}
 	if pb.Constraints["memory"] == "" {
-		pb.Constraints["memory"] = "12Gi"
+		pb.Constraints["memory"] = "11Gi"
 	}
 	if pb.Labels == nil {
 		pb.Labels = map[string]string{}
