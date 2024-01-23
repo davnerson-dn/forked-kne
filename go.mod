@@ -6,7 +6,7 @@ require (
 	cloud.google.com/go/pubsub v1.33.0
 	github.com/aristanetworks/arista-ceoslab-operator/v2 v2.0.2
 	github.com/docker/docker v24.0.7+incompatible
-	github.com/drivenets/cdnos-controller v0.0.0-20231211104019-91d54b0d5a00
+	github.com/drivenets/cdnos-controller v0.0.0-20240118143123-7d93191c784c
 	github.com/ghodss/yaml v1.0.0
 	github.com/golang/glog v1.2.0
 	github.com/golang/mock v1.6.0

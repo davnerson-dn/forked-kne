@@ -1,4 +1,4 @@
-name: "cdnos-demo"
+name: "cdnos-demo2"
 nodes: {
     name: "cdnos1"
     vendor: DRIVENETS
@@ -6,7 +6,31 @@ nodes: {
         config_file: "default"
         config_path: "/config_load"
         file: "cdnos1.cfg"
-        image: "pr-registry.dev.drivenets.net/cdnos_dev_v19_1:19.1.0.101_dev.dev_v19_1"
+        image: "pr-registry.dev.drivenets.net/cdnos_pr_62785:19.1.0.1_priv.62785.def4c035871cc301c9a2acb6f8b9d67be951c269"
+        env: {
+            key: "ALLOC_CORE",
+            value: "4G",
+        }
+        env: {
+            key: "ALLOC_TS",
+            value: "2G",
+        }
+    }
+    constraints: {
+        key: "cpu",
+        value: "3",
+    }
+    constraints: {
+        key: "memory",
+        value: "11Gi",
+    }
+    labels: {
+        key: "cpu_limit"
+        value: "4"
+    }
+    labels: {
+        key: "memory_limit"
+        value: "12Gi"
     }
     model: "CDNOS"
 }
@@ -17,7 +41,77 @@ nodes: {
         config_file: "default"
         config_path: "/config_load"
         file: "cdnos2.cfg"
-        image: "pr-registry.dev.drivenets.net/cdnos_dev_v19_1:19.1.0.101_dev.dev_v19_1"
+        image: "pr-registry.dev.drivenets.net/cdnos_pr_62785:19.1.0.1_priv.62785.def4c035871cc301c9a2acb6f8b9d67be951c269"
+        env: {
+            key: "ALLOC_CORE",
+            value: "4G",
+        }
+        env: {
+            key: "ALLOC_TS",
+            value: "2G",
+        }
+    }
+    labels: {
+        key: "cpu_limit"
+        value: "4"
+    }
+    labels: {
+        key: "memory_limit"
+        value: "12Gi"
+    }
+    model: "CDNOS"
+}
+nodes: {
+    name: "cdnos3"
+    vendor: DRIVENETS
+    config: {
+        config_file: "default"
+        config_path: "/config_load"
+        file: "cdnos3.cfg"
+        image: "pr-registry.dev.drivenets.net/cdnos_pr_62785:19.1.0.1_priv.62785.def4c035871cc301c9a2acb6f8b9d67be951c269"
+        env: {
+            key: "ALLOC_CORE",
+            value: "4G",
+        }
+        env: {
+            key: "ALLOC_TS",
+            value: "2G",
+        }
+    }
+    labels: {
+        key: "cpu_limit"
+        value: "4"
+    }
+    labels: {
+        key: "memory_limit"
+        value: "12Gi"
+    }
+    model: "CDNOS"
+}
+nodes: {
+    name: "cdnos4"
+    vendor: DRIVENETS
+    config: {
+        config_file: "default"
+        config_path: "/config_load"
+        file: "cdnos4.cfg"
+        image: "pr-registry.dev.drivenets.net/cdnos_pr_62785:19.1.0.1_priv.62785.def4c035871cc301c9a2acb6f8b9d67be951c269"
+        env: {
+            key: "ALLOC_CORE",
+            value: "4G",
+        }
+        env: {
+            key: "ALLOC_TS",
+            value: "2G",
+        }
+    }
+    labels: {
+        key: "cpu_limit"
+        value: "4"
+    }
+    labels: {
+        key: "memory_limit"
+        value: "12Gi"
     }
     model: "CDNOS"
 }
@@ -26,4 +120,22 @@ links: {
     a_int: "eno0"
     z_node: "cdnos2"
     z_int: "eno0"
+}
+links: {
+  a_node: "cdnos1"
+  a_int: "eno1"
+  z_node: "cdnos3"
+  z_int: "eno0"
+}
+links: {
+  a_node: "cdnos2"
+  a_int: "eno1"
+  z_node: "cdnos3"
+  z_int: "eno1"
+}
+links: {
+  a_node: "cdnos4"
+  a_int: "eno0"
+  z_node: "cdnos3"
+  z_int: "eno2"
 }
