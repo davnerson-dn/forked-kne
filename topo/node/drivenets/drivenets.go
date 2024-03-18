@@ -295,6 +295,10 @@ func cdnosDefaults(pb *tpb.Node) *tpb.Node {
 				Name:   "gnoi",
 				Inside: 9339,
 			},
+			830: {
+				Name:   "netconf",
+				Inside: 830,
+			},
 		}
 	}
 	return pb
